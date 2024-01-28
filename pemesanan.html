@@ -68,6 +68,8 @@
     </footer>
 
     <script>
+
+        // Skrip untuk membuat format nilai mata uang
         const formatter = new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR'
@@ -78,6 +80,7 @@
         var div, div2, div3, div4, img, h1,
             span, i, input, label, aside = document.getElementById('daftar-barang');
 
+        // Fungsi untuk membuat daftar produk yang telah ditambahkan 
         function getProduct(arrProduk) {
             produk = arrProduk
 
@@ -138,6 +141,7 @@
 
         getProduct(JSON.parse(localStorage.getItem('produk')))
 
+        // Skrip untuk menghapus produk dari daftar produk telah ditambakan
         var hapusProduk = document.querySelectorAll('.delete-product')
 
         hapusProduk.forEach(function(item, i) {
@@ -153,7 +157,7 @@
 
         })
 
-        
+        // Skrip untuk menghitung total pesanan
         var totalHtml = document.getElementById('total-pesanan'), total;
 
         function determineTotal() {
@@ -163,6 +167,7 @@
 
         determineTotal()
 
+        // Fungsi untuk input jumlah barang yang dipesan dan mengkalikan nilai nya dengan harga produk
         var inputJumlah = document.querySelectorAll('#jumlah'), total;
 
         inputJumlah.forEach((item, i) => {
@@ -176,6 +181,7 @@
             })
         })
 
+        // Form untuk submit form pemesanan dan mengarahkan pengguna ke halaman detail pemesanan
         var form = document.querySelector('.form')
         form.addEventListener('submit', function(e) {
             e.preventDefault()

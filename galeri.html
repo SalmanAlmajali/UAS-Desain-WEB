@@ -146,10 +146,12 @@
     </footer>
 
     <script>
+        // fungsi untuk menentukan total produk yang ada di keranjang
         function determineTotalProduct(produk) {
             document.getElementById('total-barang').innerHTML = produk.length
         }
 
+        // fungsi untuk mengubah string nilai mata uang menjadi integer
         function splitString(nilai) {
             const numericString = nilai.replace(/[^0-9]/g, '');
 
@@ -158,6 +160,7 @@
             return result;
         }
 
+        // Skrip untuk menambahkan barang ke keranjang
         var tambahKeKeranjang = document.querySelectorAll('.product-description')
         tambahKeKeranjang.forEach(function(item, i) {
             item.addEventListener('click', function(e) {
@@ -211,14 +214,17 @@
             })
         })
 
+        // Skrip untuk menyimpan data produk yang ditambahkan ke keranjang dalam bentuk array
         var produk = []
 
         if (localStorage.getItem('produk') != null) {
+            // Skrip untuk mengambil data produk yang ditambahkan dari local storage
             produk = JSON.parse(localStorage.getItem('produk'))
         }
 
         determineTotalProduct(produk)
         
+        // Fungsi untuk menambahkan data produk ke array produk dan menyimpannya ke local storage
         function dataProduk(data) {
             produk.push(data)
 

@@ -42,11 +42,13 @@
     </main>
 
     <script>
+        // Skrip untuk membuat format nilai mata uang
         const formatter = new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR'
         })
 
+        // Skrip untuk menampilkan data pemesan dari local storage
         var pengguna = JSON.parse(localStorage.getItem('pengguna'))
         var nama = document.getElementById('nama'),
             email = document.getElementById('email'),
@@ -57,7 +59,9 @@
         email.innerHTML = pengguna.email
         telpon.innerHTML = pengguna.telp
         alamat.innerHTML = pengguna.alamat
+        
 
+        // Skrip untuk mengambil data produk dari local storage
         var produk = JSON.parse(localStorage.getItem('produk'))
 
         var attr = [
@@ -69,6 +73,7 @@
             'totalHarga'
         ]
 
+        // Skrip untuk membuat tabel daftar produk yang dipesan
         var table = document.getElementById('table'), tr, td;
 
         produk.forEach((item, i) => {
@@ -104,6 +109,7 @@
             table.tBodies[0].appendChild(tr)
         });
 
+        // Skrip untuk menentukan total pesanan
         var totalHtml = document.getElementById('total-pesanan'), total;
 
         function determineTotal() {
