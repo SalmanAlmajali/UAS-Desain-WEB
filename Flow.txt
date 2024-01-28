@@ -1,0 +1,3 @@
+Flow pemesanan
+
+Tambah produk ke keranjang pemesanan -> Isi formulir pemesanan dan klik tombol buat pesanan -> Detail pesanan
