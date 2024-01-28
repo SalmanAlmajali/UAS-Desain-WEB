@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium | Beranda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+    <header class="nav">
+        <nav class="navbar">
+            <div class="logo">
+                <a class="./index.html">
+                    Elysium
+                </a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-menu-list">
+                    <li class="menu-list active">
+                        <a href="./index.html">Beranda</a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="./galeri.html">Galeri</a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="./pemesanan.html">Pemesanan <span class="total-barang" id="total-barang"></span></a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="./kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="hero-image">
+        <section class="hero-text">
+            <h1>Temukan Kemewahan di Elysium</h1>
+            <p>Koleksi Pilihan Elektronik, Perhiasan, Pakaian, dan Lainnya</p>
+            <a href="./galeri.html" class="btn">Cek Disini</a>
+        </section>
+    </main>
+    <section class="section description">
+        <h1>Mengapa Elysium ?</h1>
+        <ul class="why-list">
+            <li>Elysium adalah tujuan Anda untuk menemukan dan memperoleh produk mewah dan modern.</li>
+            <li>Kami menawarkan pilihan pakaian pria, pakaian wanita, aksesoris dan sepatu pilihan, masing-masing dipilih dengan cermat karena kualitasnya.</li>
+            <li>Elysium menawarkan perpaduan sempurna antara kemewahan, desain, dan kualitas. Jelajahi koleksi kami dan temukan perbedaan Elysium.</li>
+        </ul>
+    </section>
+    <footer class="footer">
+        <a href="./index.html" class="logo">Elysium</a>
+        <p>&copy; 2023 Elysium</p>
+    </footer>
+
+    <script>
+        var produk = JSON.parse(localStorage.getItem('produk'))
+
+        document.getElementById('total-barang').innerHTML = produk.length
+    </script>
+</body>
+</html>

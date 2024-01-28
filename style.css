@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=panchang@200,500,700,300,400,800,600&display=swap');
+/* Jangan lupa CSS reset */
+
+* {
+	padding: 0;
+	margin: 0;
+	font-family: 'Panchang', 'Montserrat';
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.container {
+    overflow-x: hidden;
+}
+
+.nav {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid gray;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-family: 'Panchang', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all;
+}
+
+.logo:hover {
+    font-style: oblique;
+}
+
+.nav-menu-list {
+    display: flex;
+    column-gap: 1rem;
+}
+
+.menu-list {
+    position: relative;
+    padding: .5rem 1rem;
+    transition: .5s ease-in-out;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.menu-list:hover {
+    background-color: black;
+}
+
+.menu-list:hover a {
+    color: white;
+    font-style: oblique;
+}
+
+.active {
+    background-color: black;
+}
+
+.active a {
+    color: white;
+    font-style: oblique
+}
+
+.hero-image {
+    background-image: url('./assets/hero-image.jpg');
+    background-size: cover;
+    height: 500px;
+}
+
+.hero-image::after {
+	content: " ";
+	position: absolute;
+	height: 500px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, .50);
+}
+
+.hero-text {
+    position: absolute;
+	z-index: 50;
+	transform: translate(-50%, -50%);
+	color: #FFFFFF;
+	text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+	font-weight: bold;
+	width: 500px;
+	margin-bottom: 1rem;
+}
+
+.hero-text p {
+    font-size: 1rem;
+	color: rgb(206, 206, 206);
+	margin-bottom: 2rem;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.btn {
+    display: inline-block;
+	padding: 0.5rem 1rem;
+	border: 1px solid white;
+	color: white;
+	font-weight: 500;
+	letter-spacing: 1px;
+    background-color: transparent;
+	transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: .8rem;
+}
+
+.btn:hover {
+	background-color: white;
+	color: black;
+	font-weight: 600;
+}
+
+.description h1 {
+    font-size: 2rem;
+	font-weight: 700;
+	color: black;
+    margin-bottom: 2rem;
+}
+
+.why-list {
+    list-style-type: square;
+    margin-left: 1.2rem;
+}
+
+.description li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+	letter-spacing: 0.025em;
+    line-height: normal;
+}
+
+.footer {
+    padding: 3rem;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer p {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2rem;
+    font-weight: 500;
+}
+
+.product-container-title {
+    font-size: 1rem;
+    font-weight: 700;
+	color: black;
+    margin-bottom: 2rem;
+}
+
+.products {
+    display: grid;
+    gap: 2rem;
+}
+
+.product {
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.product:hover {
+    box-shadow: 0px 40px 50px -4px rgba(0,0,0,0.20);
+}
+
+.product-image {
+    width: 100%;
+}
+
+.product-description {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    cursor: pointer;
+    background-color: white;
+}
+
+.product-description h1 {
+    font-size: small;
+}
+
+.price-cart {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    transition: all .3s ease-in-out;
+    border: 1px solid black;
+}
+
+.price-cart span {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.product:hover .price-cart {
+    background-color: black;
+    color: white;
+    font-style: oblique;
+}
+
+.total-barang {
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 3px;
+    border-left: 2px solid black;
+}
+
+.menu-list:hover .total-barang {
+    border-left: 2px solid white;
+}
+
+.active .total-barang {
+    border-left: 2px solid white;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    column-gap: 1rem;
+}
+
+.aside {
+    width: 30%;
+    max-width: 20%;
+    padding: 0 3rem 3rem 3rem;
+    display: flex;
+    row-gap: 1rem;
+    background-color: #f3f3f3;
+    overflow-y: scroll;
+}
+
+.checkout-container {
+    display: flex;
+}
+
+.form-checkout {
+    width: 70%;
+    padding: 3rem 10rem;
+}
+
+.border {
+    border: 1px solid black
+}
+
+.form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.input-group label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.input-group input, textarea {
+    padding: 1rem .5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    border: 1px solid black;
+}
+
+.input-group textarea {
+    resize: vertical;
+    height: 200px;
+}
+
+.btn-checkout {
+    padding: 1.5rem 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+    background-color: white;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-checkout:hover {
+    background-color: black;
+    color: white;
+}
+
+.delete-product {
+    padding: 1rem;
+    transition: all .3s ease-in-out;
+    border: 1px solid red;
+    color: red;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.delete-product:hover {
+    background-color: red;
+    color: white;
+}
+
+.total {
+    background-color: #f3f3f3;
+    padding: 1rem;
+    box-sizing: border-box;
+    top: 0;
+    position: sticky;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.total p {
+    margin-top: 1rem;
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.data {
+    margin-bottom: 2rem;
+}
+
+.data h1 {
+	font-weight: 700;
+	color: black;
+    margin-bottom: 1rem;
+}
+
+.data li, span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+	letter-spacing: 0.025em;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.detail {
+    max-width: 100vw;
+    overflow-x: auto;
+}
+
+.detail h1 {
+    font-weight: 700;
+	color: black;
+    margin-bottom: 1rem;
+}
+
+.detail-table {
+    width: 100%;
+}
+
+.detail-table, th, td {
+    white-space: nowrap;
+    padding: .5rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.detail-table img {
+    width: 20%;
+}
+
+.label-jumlah {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.input-jumlah {
+    padding: .8rem;
+    border: 1px solid black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.lorem {
+    margin-top: 2rem;
+    line-height: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+@media only screen and (min-width: 992px) {
+    .hero-text {
+        top: 45% !important;
+        left: 27% !important;
+    }
+
+    .section {
+        padding: 10rem !important;
+    }
+
+    .product-container {
+        padding: 3rem 10rem !important;
+    }
+
+    .products {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+
+    .aside {
+        width: 30% !important;
+        max-width: 20% !important;
+    }
+
+    .detail-container {
+        padding: 3rem 10rem !important;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .hero-text {
+        top: 50%;
+        left: 40%;
+    }
+
+    .section {
+        padding: 5rem;
+    }
+
+    .product-container {
+        padding: 5rem;
+    }
+
+    .products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .checkout-container {
+        max-height: 130vh;
+    }
+
+    .aside {
+        width: 50%;
+        max-width: 50%;
+    }
+
+    .form-checkout {
+        width: 50%;
+        padding: 5rem;
+    }
+
+    .detail-container {
+        padding: 5rem !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .nav {
+        padding: 1rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
+    .nav-menu-list {
+        flex-direction: column;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-image {
+        background-position: center;
+    }
+
+    .hero-text {
+        top: 80%;
+        left: 50%;
+    }
+
+    .hero-text h1 {
+        font-size: 1.1rem;
+        max-width: 90vw;
+    }
+
+    .hero-text p {
+        max-width: 90vw;
+    }
+
+    .description h1 {
+        font-size: 1.1rem;
+    }
+
+    .description li {
+        font-size: .9rem;
+    }
+
+    .product-container {
+        padding: 2rem 1rem;
+    }
+
+    .products {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .checkout-container {
+        flex-direction: column;
+        max-height: none;
+    }
+
+    .aside {
+        width: 100%;
+        max-width: 100vw;
+        padding: 2rem 1rem;
+        box-sizing: border-box;
+    }
+
+    .form-checkout {
+        padding: 2rem 1rem;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .detail-container {
+        padding: 1rem;
+    }
+}

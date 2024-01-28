@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detai Pesanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+    <main class="detail-container">
+        <section class="data">
+            <h1>Data Pemesan</h1>
+            <ul>
+                <li>Nama Pemesan : <span id="nama"></span></li>
+                <li>Email : <span id="email"></span></li>
+                <li>Telpon : <span id="telpon"></span></li>
+                <li>Alamat : <span id="alamat"></span></li>
+            </ul>
+        </section>
+        <section class="detail">
+            <h1>Detail Pemesanan</h1>
+            <table id="table" class="detail-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Gambar</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Nama Barang</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </section>
+        <section class="total">
+            <h1>Total</h1>
+            <p id="total-pesanan"></p>
+        </section>
+    </main>
+
+    <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        })
+
+        var pengguna = JSON.parse(localStorage.getItem('pengguna'))
+        var nama = document.getElementById('nama'),
+            email = document.getElementById('email'),
+            telpon = document.getElementById('telpon'),
+            alamat = document.getElementById('alamat');
+        
+        nama.innerHTML = pengguna.nama
+        email.innerHTML = pengguna.email
+        telpon.innerHTML = pengguna.telp
+        alamat.innerHTML = pengguna.alamat
+
+        var produk = JSON.parse(localStorage.getItem('produk'))
+
+        var attr = [
+            'i',
+            'gambarProduk',
+            'hargaProduk',
+            'jumlahProduk',
+            'namaProduk',
+            'totalHarga'
+        ]
+
+        var table = document.getElementById('table'), tr, td;
+
+        produk.forEach((item, i) => {
+            tr = document.createElement('tr')
+
+            for (let index = 0; index < attr.length; index++) {
+                td = document.createElement('td')
+                tr.appendChild(td)
+
+                switch (index) {
+                    case 0:
+                        td.innerHTML = i + 1
+                        break;
+                    
+                    case 1:
+                        td.innerHTML = `<img src="${item.gambarProduk}" alt="${item.gambarProduk}" />`
+                        break;    
+
+                    case 2:
+                        td.innerHTML = formatter.format(item.hargaProduk)
+                        break;
+
+                    case 5:
+                        td.innerHTML = formatter.format(item.totalHarga)
+                        break;
+
+                    default:
+                        td.innerHTML = item[attr[index]]
+                        break;
+                }
+            }
+
+            table.tBodies[0].appendChild(tr)
+        });
+
+        var totalHtml = document.getElementById('total-pesanan'), total;
+
+        function determineTotal() {
+            total = produk.reduce((acc, curr) => curr.totalHarga + acc, 0)
+            totalHtml.innerHTML = formatter.format(total)
+        }
+
+        determineTotal()
+    </script>
+</body>
+</html>

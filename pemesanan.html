@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium | Pemesanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+    <header class="nav">
+        <nav class="navbar">
+            <div class="logo">
+                <a class="./index.html">
+                    Elysium
+                </a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-menu-list">
+                    <li class="menu-list">
+                        <a href="./index.html">Beranda</a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="./galeri.html">Galeri</a>
+                    </li>
+                    <li class="menu-list active">
+                        <a href="./pemesanan.html">Pemesanan <span class="total-barang" id="total-barang"></span></a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="./kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="checkout-container">
+        <aside id="daftar-barang" class="aside product-list">
+            <div class="total">
+                <h1>Total</h1>
+                <p id="total-pesanan"></p>
+            </div>
+        </aside>
+        <section class="form-checkout">
+            <h1>Form Pemesanan</h1>
+            <form class="form" method="POST">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+                <div class="input-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama" required />
+                </div>
+                <div class="input-group">
+                    <label for="telp">Telpon</label>
+                    <input type="number" name="telp" id="telp" required />
+                </div>
+                <div class="input-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea name="alamat" id="alamat" required></textarea>
+                </div>
+                <button type="submit" class="btn-checkout border">Buat Pesanan</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <a href="./index.html" class="logo">Elysium</a>
+        <p>&copy; 2023 Elysium</p>
+    </footer>
+
+    <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        })
+
+        var produk;
+
+        var div, div2, div3, div4, img, h1,
+            span, i, input, label, aside = document.getElementById('daftar-barang');
+
+        function getProduct(arrProduk) {
+            produk = arrProduk
+
+            document.getElementById('total-barang').innerHTML = produk.length
+
+            arrProduk.forEach((item, index) => {
+                div = document.createElement('div')
+                img = document.createElement('img')
+                div2 = document.createElement('div')
+                h1 = document.createElement('h1')
+                div3 = document.createElement('div')
+                span = document.createElement('span')
+                div4 = document.createElement('div')
+                label = document.createElement('label')
+                input = document.createElement('input')
+    
+                div.appendChild(img)
+                div.appendChild(div2)
+                div2.appendChild(h1)
+                div3.appendChild(span)
+                div2.appendChild(div3)
+                div2.appendChild(label)
+                div2.appendChild(input)
+                div2.appendChild(div4)
+                
+                div.setAttribute('class', 'product border')
+    
+                img.setAttribute('src', item.gambarProduk)
+                img.setAttribute('class', 'product-image')
+    
+                div2.setAttribute('class', 'product-description')
+    
+                h1.textContent = item.namaProduk
+                h1.setAttribute('class', 'name')
+    
+                div3.setAttribute('class', 'price-cart')
+    
+                span.textContent = formatter.format(item.hargaProduk)
+                span.setAttribute('class', 'price')
+    
+                label.setAttribute('for', 'jumlah')
+                label.setAttribute('class', 'label-jumlah')
+                label.textContent = 'Jumlah'
+    
+                input.setAttribute('type', 'number')
+                input.setAttribute('name', 'jumlah')
+                input.setAttribute('id', 'jumlah')
+                input.setAttribute('class', 'input-jumlah')
+                input.setAttribute('value', item.jumlahProduk)
+    
+                div4.setAttribute('class', 'delete-product')
+                div4.setAttribute('data-index', index)
+                div4.textContent = 'Hapus Produk'
+    
+                aside.appendChild(div)
+            });
+        }
+
+        getProduct(JSON.parse(localStorage.getItem('produk')))
+
+        var hapusProduk = document.querySelectorAll('.delete-product')
+
+        hapusProduk.forEach(function(item, i) {
+            item.addEventListener('click', function(e) {
+                e.preventDefault()
+
+                produk.splice(e.target.dataset.index, 1)
+
+                localStorage.setItem('produk', JSON.stringify(produk))
+
+                window.location.reload()
+            })
+
+        })
+
+        
+        var totalHtml = document.getElementById('total-pesanan'), total;
+
+        function determineTotal() {
+            total = produk.reduce((acc, curr) => curr.totalHarga + acc, 0)
+            totalHtml.innerHTML = formatter.format(total)
+        }
+
+        determineTotal()
+
+        var inputJumlah = document.querySelectorAll('#jumlah'), total;
+
+        inputJumlah.forEach((item, i) => {
+            item.addEventListener('change', function (e) {
+                produk[i].jumlahProduk = e.target.value
+                produk[i].totalHarga = produk[i].hargaProduk * e.target.value
+
+                localStorage.setItem('produk', JSON.stringify(produk))
+
+                determineTotal()
+            })
+        })
+
+        var form = document.querySelector('.form')
+        form.addEventListener('submit', function(e) {
+            e.preventDefault()
+
+            var email, name, telp, alamat;
+
+            email = document.getElementById('email')
+            nama = document.getElementById('nama')
+            telp = document.getElementById('telp')
+            alamat = document.getElementById('alamat')
+
+            localStorage.setItem('pengguna', JSON.stringify({
+                email: email.value,
+                nama: nama.value,
+                telp: telp.value,
+                alamat: alamat.value
+            }))
+
+            alert("Pesanan berhasil dibuat")
+
+            window.location.assign('checkout.html')
+        })
+    </script>
+</body>
+</html>
